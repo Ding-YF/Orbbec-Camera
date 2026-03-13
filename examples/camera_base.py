@@ -41,12 +41,13 @@ def main():
 
             # 2. 转换并显示图像
             color_image = frame_to_bgr_image(color_frame)
+            color_image_fliped = cv2.flip(color_image, -1) # 上下左右翻转
             if color_image is not None:
                 # 在图像上绘制 FPS
-                cv2.putText(color_image, f"FPS: {fps:.2f}", (20, 40), 
+                cv2.putText(color_image_fliped, f"FPS: {fps:.2f}", (20, 40), 
                             cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                 
-                cv2.imshow("Orbbec SDK FPS Demo", color_image)
+                cv2.imshow("Orbbec SDK FPS Demo", color_image_fliped)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
